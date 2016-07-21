@@ -9,6 +9,7 @@ import com.mosis.negocios.facade.FacadeCriteria;
 import com.mosis.negocios.facade.FacadeDispositivo;
 import com.mosis.negocios.facade.FacadeEtiquetas;
 import com.mosis.negocios.facade.FacadePreguntas;
+import com.mosis.negocios.facade.FacadeTipoRespuesta;
 import com.mosis.negocios.facade.FacadeTipoUsuario;
 import com.mosis.negocios.facade.FacadeUsuarios;
 
@@ -23,6 +24,7 @@ public class ServiceFacadeLocator {
     private static FacadeEtiquetas facadeEtiquetas;
     private static FacadeDispositivo facadeDispositivo;
     private static FacadePreguntas facadePreguntas;
+    private static FacadeTipoRespuesta facadeTipoRespuesta;
 
     private static FacadeCriteria facadeCriteria;
 
@@ -68,6 +70,15 @@ public class ServiceFacadeLocator {
             return facadePreguntas;
         } else {
             return facadePreguntas;
+        }
+    }
+
+    public static FacadeTipoRespuesta getFacadeTipoRespuesta() {
+        if (facadeTipoRespuesta == null) {
+            facadeTipoRespuesta = new FacadeTipoRespuesta();
+            return facadeTipoRespuesta;
+        } else {
+            return facadeTipoRespuesta;
         }
     }
 

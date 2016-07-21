@@ -100,7 +100,7 @@ public class DelegateUsuarios {
 //        DelegateUsuarios du = new DelegateUsuarios();
 //
 //        Usuarios usuario = new Usuarios();
-//        TipoUsuario tufind = ServiceFacadeLocator.getFacadeTipoUsuario().tipoUsuarioID(4);
+//        TipoUsuario tufind = ServiceFacadeLocator.getFacadeTipoUsuario().tipoUsuarioID(44);
 //        usuario.setIdUsuario(14);
 //        usuario.setNombre("Karina");
 //        usuario.setAp("Apellido");
