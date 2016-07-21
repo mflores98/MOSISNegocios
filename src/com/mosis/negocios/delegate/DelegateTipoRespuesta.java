@@ -100,5 +100,13 @@ public class DelegateTipoRespuesta {
 //            System.out.println(tr1.getTipoRespuesta());
 //        }
 //    }
+    public void deleteTipoRespuesta(int id) {
+        TipoRespuesta tipoRespuesta = getTipoRespuestaId(id);
+        if (tipoRespuesta != null) {
+            ServiceFacadeLocator.getFacadeTipoRespuesta().deleteTipoRespuesta(id);
+        } else {
+            System.out.println("tipo respuesta no valida");
+        }
+    }
 
 }
