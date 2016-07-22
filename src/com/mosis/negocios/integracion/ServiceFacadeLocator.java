@@ -8,6 +8,7 @@ package com.mosis.negocios.integracion;
 import com.mosis.negocios.facade.FacadeCriteria;
 import com.mosis.negocios.facade.FacadeDispositivo;
 import com.mosis.negocios.facade.FacadeEtiquetas;
+import com.mosis.negocios.facade.FacadeGuardia;
 import com.mosis.negocios.facade.FacadePreguntas;
 import com.mosis.negocios.facade.FacadeTipoRespuesta;
 import com.mosis.negocios.facade.FacadeTipoUsuario;
@@ -25,6 +26,7 @@ public class ServiceFacadeLocator {
     private static FacadeDispositivo facadeDispositivo;
     private static FacadePreguntas facadePreguntas;
     private static FacadeTipoRespuesta facadeTipoRespuesta;
+    private static FacadeGuardia facadeGuardia;
 
     private static FacadeCriteria facadeCriteria;
 
@@ -79,6 +81,15 @@ public class ServiceFacadeLocator {
             return facadeTipoRespuesta;
         } else {
             return facadeTipoRespuesta;
+        }
+    }
+
+    public static FacadeGuardia getFacadeGuardia() {
+        if (facadeGuardia == null) {
+            facadeGuardia = new FacadeGuardia();
+            return facadeGuardia;
+        } else {
+            return facadeGuardia;
         }
     }
 

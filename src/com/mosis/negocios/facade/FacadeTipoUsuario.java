@@ -18,25 +18,33 @@ public class FacadeTipoUsuario {
 
     public void insertTipoUsuario(String tipoUsuario, String parent) {
 
-//        try {
         ServiceLocator.getInstance().setTipo(TipoUsuario.class);
 
         TipoUsuario tipoUsuario1 = new TipoUsuario();
         tipoUsuario1.setTipoUsuario(tipoUsuario);
         tipoUsuario1.setParent(parent);
         ServiceLocator.getInstance().save(tipoUsuario1);
-//        } catch (Exception e) {
-//            throw e;
-//        }
+// 
     }
 
-//    public static void main(String[] args) {
-//        FacadeTipoUsuario ftu = new FacadeTipoUsuario();
-//        ftu.insertTipoUsuario("nuevo usuario", "2");
-//        ServiceLocator.getInstance().setTipo(TipoUsuario.class);
-//        TipoUsuario tipoUsuario = new TipoUsuario(null, "tipoaddd", "2");
-//        ServiceLocator.getInstance().save(tipoUsuario);
-//    }
+    public void addTipoUsuario(TipoUsuario tu) {
+        ServiceLocator.getInstance().setTipo(TipoUsuario.class);
+        TipoUsuario tipoUsuario2 = new TipoUsuario();
+
+        tipoUsuario2.setTipoUsuario(tu.getTipoUsuario());
+        tipoUsuario2.setParent(tu.getParent());
+        ServiceLocator.getInstance().save(tipoUsuario2);
+        ServiceLocator.getInstance().save(tipoUsuario2);
+    }
+
+    public static void main(String[] args) {
+
+        FacadeTipoUsuario ftu = new FacadeTipoUsuario();
+
+        ftu.addTipoUsuario(new TipoUsuario(null, "nuevio ", "usuarioi"));
+
+    }
+
     public List<TipoUsuario> getListTipoUsuarios() {
         ServiceLocator.getInstance().setTipo(TipoUsuario.class);
         List<TipoUsuario> findAll = ServiceLocator.getInstance().findAll();

@@ -44,7 +44,6 @@ public class FacadePreguntas {
     public void deletePregunta(int id) {
         ServiceLocator.getInstance().setTipo(Preguntas.class);
         Preguntas pregunta = (Preguntas) ServiceLocator.getInstance().find(id);
-
         ServiceLocator.getInstance().delete(pregunta);
     }
 

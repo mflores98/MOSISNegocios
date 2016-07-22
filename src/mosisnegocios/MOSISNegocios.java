@@ -5,6 +5,8 @@
  */
 package mosisnegocios;
 
+import com.mosis.negocios.integracion.ServiceFacadeLocator;
+
 /**
  *
  * @author xhendor
@@ -16,6 +18,9 @@ public class MOSISNegocios {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+//        ServiceFacadeLocator.getFacadeTipoUsuario().insertTipoUsuario("ksad", "34ds");
+//        ServiceFacadeLocator.getFacadeDispositivo().addDisporitivo(dsa);
     }
+    
     
 }
