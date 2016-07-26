@@ -7,9 +7,8 @@
             <file>file:/C:/Users/Owner/Documents/NetBeansProjects/16/Proyecto%20Mosis%20Mejorado/MOSISNegocios/src/com/mosis/negocios/delegate/DelegatePreguntas.java</file>
             <file>file:/C:/Users/Owner/Documents/NetBeansProjects/16/Proyecto%20Mosis%20Mejorado/MOSISNegocios/src/com/mosis/negocios/facade/FacadeGuardia.java</file>
             <file>file:/C:/Users/Owner/Documents/NetBeansProjects/16/Proyecto%20Mosis%20Mejorado/MOSISNegocios/src/mosisnegocios/MOSISNegocios.java</file>
-            <file>file:/C:/Users/Owner/Documents/NetBeansProjects/16/Proyecto%20Mosis%20Mejorado/MOSISNegocios/src/com/mosis/negocios/facade/FacadeTipoUsuario.java</file>
             <file>file:/C:/Users/Owner/Documents/NetBeansProjects/16/Proyecto%20Mosis%20Mejorado/MOSISNegocios/src/com/mosis/negocios/delegate/DelegateTipoUsuario.java</file>
-            <file>file:/C:/Users/Owner/Documents/NetBeansProjects/16/Proyecto%20Mosis%20Mejorado/MOSISNegocios/src/com/mosis/negocios/facade/FacadeDispositivo.java</file>
+            <file>file:/C:/Users/Owner/Documents/NetBeansProjects/16/Proyecto%20Mosis%20Mejorado/MOSISNegocios/src/com/mosis/negocios/delegate/DelegateDispositivo.java</file>
         </group>
     </open-files>
 </project-private>

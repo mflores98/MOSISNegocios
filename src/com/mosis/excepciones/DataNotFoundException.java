@@ -9,12 +9,13 @@ package com.mosis.excepciones;
  *
  * @author Owner
  */
-public class MyExceptionHelper {
+public class DataNotFoundException extends RuntimeException {
 
-    public MyExceptionHelper() {
+        private static final long serialVersionUID = 700L;
+
+
+    public DataNotFoundException(String message) {
+        super(message);
     }
 
-    public void validarExistencia()throws MyException{
-        
-    }
 }
