@@ -7,6 +7,7 @@ package com.mosis.negocios.facade;
 
 import com.google.gson.Gson;
 import com.mosis.entidades.TipoUsuario;
+import com.mosis.negocios.integracion.ServiceFacadeLocator;
 import com.mosis.persistencia.integracion.ServiceLocator;
 import java.util.List;
 
@@ -16,34 +17,38 @@ import java.util.List;
  */
 public class FacadeTipoUsuario {
 
-    public void insertTipoUsuario(String tipoUsuario, String parent) {
-
-        ServiceLocator.getInstance().setTipo(TipoUsuario.class);
-
-        TipoUsuario tipoUsuario1 = new TipoUsuario();
-        tipoUsuario1.setTipoUsuario(tipoUsuario);
-        tipoUsuario1.setParent(parent);
-        ServiceLocator.getInstance().save(tipoUsuario1);
-// 
-    }
-
     public void addTipoUsuario(TipoUsuario tu) {
         ServiceLocator.getInstance().setTipo(TipoUsuario.class);
         TipoUsuario tipoUsuario2 = new TipoUsuario();
-
         tipoUsuario2.setTipoUsuario(tu.getTipoUsuario());
-        tipoUsuario2.setParent(tu.getParent());
-        ServiceLocator.getInstance().save(tipoUsuario2);
         ServiceLocator.getInstance().save(tipoUsuario2);
     }
 
-    public static void main(String[] args) {
-
-        FacadeTipoUsuario ftu = new FacadeTipoUsuario();
-
-        ftu.addTipoUsuario(new TipoUsuario(null, "nuevio ", "usuarioi"));
-
+    public void updateTipoUsuario(int id, TipoUsuario tu) {
+        TipoUsuario ti = ServiceFacadeLocator.getFacadeTipoUsuario().tipoUsuarioID(id);
+        if (ti != null) {
+            ServiceLocator.getInstance().setTipo(TipoUsuario.class);
+            TipoUsuario tipoUsuario = new TipoUsuario(id, tu.getTipoUsuario());
+            ServiceLocator.getInstance().saveOrUpdate(tipoUsuario);
+        } else {
+            System.out.println("tipo usuario no valido");
+        }
     }
+
+//    public static void main(String[] args) {
+//
+////        ServiceFacadeLocator.getFacadeTipoUsuario().addTipoUsuario(new TipoUsuario(null, "Super Admin "));
+////        TipoUsuario tu=new TipoUsuario();
+////        tu.setTipoUsuario("super adim mod");
+////        ServiceFacadeLocator.getFacadeTipoUsuario().updateTipoUsuario(6, tu);
+////        List<TipoUsuario> tu = ServiceFacadeLocator.getFacadeTipoUsuario().getListTipoUsuarios();
+////        for (TipoUsuario tu1 : tu) {
+////            System.out.println(tu1.getTipoUsuario());
+////        }
+////                TipoUsuario tu = ServiceFacadeLocator.getFacadeTipoUsuario().tipoUsuarioID(4);
+////                System.out.println(tu.getTipoUsuario());
+//
+//    }
 
     public List<TipoUsuario> getListTipoUsuarios() {
         ServiceLocator.getInstance().setTipo(TipoUsuario.class);
@@ -72,6 +77,11 @@ public class FacadeTipoUsuario {
 //        System.out.println(toJson);
 //
 //    }
+    /**
+     * proc aun no creado
+     * @param valorid
+     * @return 
+     */
     public List<Object[]> mostrarTipoUsuarioPorId(int valorid) {
         return ServiceLocator.getInstance().executeQuery("call mosis.proc_tipousuario_id(" + valorid + ");");
     }
@@ -82,7 +92,10 @@ public class FacadeTipoUsuario {
 //            System.out.println(mostrarTipoUsiario[1].toString());
 //        }
 //    }
-
+/**
+ *   * proc aun no creado
+ * @return 
+ */
     public List<Object[]> mostrarTipoUsiarios() {
         return ServiceLocator.getInstance().executeQuery("call mosis.proc_tiposusuario();");
     }
@@ -99,7 +112,7 @@ public class FacadeTipoUsuario {
      *
      * @param id
      */
-    public void elimniar(int id) {
+    public void elimniarTipoUsuario(int id) {
         try {
             ServiceLocator.getInstance().setTipo(TipoUsuario.class);
             TipoUsuario find = (TipoUsuario) ServiceLocator.getInstance().find(id);
@@ -110,47 +123,9 @@ public class FacadeTipoUsuario {
         }
 
     }
-
-//    public static void main(String[] args) {
-//        FacadeTipoUsuario ftu = new FacadeTipoUsuario();
-//        ftu.elimniar(1);
-//    }
-    public void editarTipoU(int id, String tipo, String parent) {
-        try {
-            ServiceLocator.getInstance().setTipo(TipoUsuario.class);
-            TipoUsuario tipoUsuario = new TipoUsuario();
-            tipoUsuario.setIdTipoUsuario(id);
-            tipoUsuario.setTipoUsuario(tipo);
-            tipoUsuario.setParent(parent);
-            ServiceLocator.getInstance().saveOrUpdate(tipoUsuario);
-            System.out.println("editados");
-        } catch (Exception e) {
-            System.out.println("error: " + e);
-        }
-    }
-
-//    public static void main(String[] args) {
-//        FacadeTipoUsuario ftu = new FacadeTipoUsuario();
-//        
-//        ftu.editarTipoU(1, "ds USUARIO", "1");
-//        
-//    }
 //    public static void main(String[] args) {
 //            FacadeTipoUsuario ftu=new FacadeTipoUsuario();
-//            ftu.elimniar(4);
+//            ftu.elimniarTipoUsuario(4);
 //    }
-//    public static void main(String[] args) {
-//        FacadeTipoUsuario ftu = new FacadeTipoUsuario();
-//       // List<Object[]> dato = ftu.mostrarTipoUsuarioPorId(1);
-//         List<Object[]> dato = ftu.mostrarTipoUsiarios();
-//        
-//        Gson gson = new Gson();
-//
-//        String json = gson.toJson(dato);
-//        System.out.println(json);
-//
-//        //  for (Object[] dato1 : dato) {
-//        //  System.out.println(dato1[0].toString() + " " + dato1[1].toString());
-//        //  }
-//        // ftu.insertTipoUsuario("SuperUsuario", null);
+
 }

@@ -6,7 +6,6 @@
 package com.mosis.negocios.facade;
 
 import com.mosis.entidades.Preguntas;
-import com.mosis.entidades.Usuarios;
 import com.mosis.persistencia.integracion.ServiceLocator;
 import java.util.List;
 
@@ -18,25 +17,32 @@ public class FacadePreguntas {
 
     FacadeUsuarios fu = new FacadeUsuarios();
 
-    public void addPregunta(Preguntas p, Usuarios u) {
+    public void addPregunta(Preguntas p) {
         ServiceLocator.getInstance().setTipo(Preguntas.class);
         Preguntas preguntas = new Preguntas();
-        Usuarios usuarioID = fu.usuariosId(u.getIdUsuario());
+//        Usuarios usuarioID = fu.usuariosId(u.getIdUsuario());
         preguntas.setPregunta(p.getPregunta());
-        preguntas.setFkIdUsuario(usuarioID);
+//        preguntas.setFkIdUsuario(usuarioID);
         ServiceLocator.getInstance().save(preguntas);
 
     }
 
-    public void updatePregunta(Preguntas p, Usuarios u) {
+    public static void main(String[] args) {
+        Preguntas pregunta = new Preguntas(null, "de A como?");
+//        ServiceFacadeLocator.getFacadePreguntas().addPregunta(pregunta);
+//        ServiceFacadeLocator.getFacadePreguntas().updatePregunta(1, pregunta);
+//        ServiceFacadeLocator.getFacadePreguntas().deletePregunta(3);
+//        List<Preguntas> p=ServiceFacadeLocator.getFacadePreguntas().getListPreguntas();
+    }
+
+    public void updatePregunta(int id, Preguntas p) {
         ServiceLocator.getInstance().setTipo(Preguntas.class);
         Preguntas preguntas = new Preguntas();
-        Usuarios usuarioID = fu.usuariosId(u.getIdUsuario());
+//        Usuarios usuarioID = fu.usuariosId(u.getIdUsuario());
 
-        preguntas.setIdPregunta(p.getIdPregunta());
+        preguntas.setIdPregunta(id);
         preguntas.setPregunta(p.getPregunta());
-        preguntas.setFkIdUsuario(usuarioID);
-
+//        preguntas.setFkIdUsuario(usuarioID);
         ServiceLocator.getInstance().saveOrUpdate(preguntas);
 
     }

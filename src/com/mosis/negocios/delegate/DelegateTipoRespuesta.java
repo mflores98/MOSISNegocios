@@ -6,7 +6,6 @@
 package com.mosis.negocios.delegate;
 
 import com.mosis.entidades.TipoRespuesta;
-import com.mosis.entidades.Usuarios;
 import com.mosis.negocios.integracion.ServiceFacadeLocator;
 import java.util.List;
 
@@ -16,23 +15,14 @@ import java.util.List;
  */
 public class DelegateTipoRespuesta {
 
-    DelegateUsuarios du = new DelegateUsuarios();
+    public void addTipoRespuesta(TipoRespuesta tr) {
 
-    public void addTipoRespuesta(TipoRespuesta tr, Usuarios u) {
-        Usuarios usuariosID = du.getUsuarioid(u.getIdUsuario());
-
-        if (usuariosID != null) {
-            try {
-                TipoRespuesta tipoRespuesta = new TipoRespuesta();
-                tipoRespuesta.setTipoRespuesta(tr.getTipoRespuesta());
-                tipoRespuesta.setFkIdUsuario(usuariosID);
-                ServiceFacadeLocator.getFacadeTipoRespuesta().addTipoRespuesta(tipoRespuesta, usuariosID);
-
-            } catch (Exception e) {
-                System.out.println("Error: " + e);
-            }
-        } else {
-            System.out.println("usuario no valido");
+        try {
+            TipoRespuesta tipoRespuesta = new TipoRespuesta();
+            tipoRespuesta.setTipoRespuesta(tr.getTipoRespuesta());
+            ServiceFacadeLocator.getFacadeTipoRespuesta().addTipoRespuesta(tipoRespuesta);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
         }
     }
 
@@ -47,25 +37,17 @@ public class DelegateTipoRespuesta {
 //        
 //        dtr.addTipoRespuesta(tipoRespuesta, usuariosID);
 //    }
-    public void updateTipoRespuesta(TipoRespuesta tr, Usuarios u) {
-        Usuarios usuariosID = du.getUsuarioid(u.getIdUsuario());
-
-        TipoRespuesta tipoRespuestaID = getTipoRespuestaId(tr.getIdTipoRespuesta());
+    public void updateTipoRespuesta(int id, TipoRespuesta tr) {
+        TipoRespuesta tipoRespuestaID = ServiceFacadeLocator.getFacadeTipoRespuesta().getTipoRespuestaId(id);
         if (tipoRespuestaID != null) {
-            if (usuariosID != null) {
-                TipoRespuesta tipoRespuesta = new TipoRespuesta();
-                tipoRespuesta.setIdTipoRespuesta(tr.getIdTipoRespuesta());
-                tipoRespuesta.setTipoRespuesta(tr.getTipoRespuesta());
-                tipoRespuesta.setFkIdUsuario(usuariosID);
-                ServiceFacadeLocator.getFacadeTipoRespuesta().updateTipoRespuestas(tipoRespuesta, usuariosID);
-            } else {
-                System.out.println("usuario no valido");
-            }
+            TipoRespuesta tipoRespuesta = new TipoRespuesta();
+            tipoRespuesta.setIdTipoRespuesta(id);
+            tipoRespuesta.setTipoRespuesta(tr.getTipoRespuesta());
+            ServiceFacadeLocator.getFacadeTipoRespuesta().updateTipoRespuestas(id, tipoRespuesta);
         } else {
-            System.out.println("tipo respuesta no valida");
+            System.out.println("tipo respuesta no valido");
         }
     }
-
 //    public static void main(String[] args) {
 //        DelegateTipoRespuesta dtr = new DelegateTipoRespuesta();
 //        TipoRespuesta tipoRespuesta = new TipoRespuesta();
@@ -79,7 +61,7 @@ public class DelegateTipoRespuesta {
 //
 //        dtr.updateTipoRespuesta(tipoRespuesta, usuariosID);
 //    }
-    public TipoRespuesta getTipoRespuestaId(int id) {
+public TipoRespuesta getTipoRespuestaId(int id) {
         return ServiceFacadeLocator.getFacadeTipoRespuesta().getTipoRespuestaId(id);
     }
 //     public static void main(String[] args) {
@@ -92,7 +74,6 @@ public class DelegateTipoRespuesta {
         List<TipoRespuesta> datos = ServiceFacadeLocator.getFacadeTipoRespuesta().getListTipoRespuestas();
         return datos;
     }
-
 //    public static void main(String[] args) {
 //        DelegateTipoRespuesta dtr = new DelegateTipoRespuesta();
 //        List<TipoRespuesta> tr = dtr.getListTipoRespuestas();

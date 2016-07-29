@@ -13,14 +13,16 @@ public class MyException extends Exception {
 
     public static final long serialVersionUID = 700L;
 
-   
     @Override
     public String getMessage() {
         return "Error interno.";
     }
 
+//    public String getMesage() {
+//        return "";
+//    }
+
 //    public MyException(String mensaje) {
 //        super(mensaje);
 //    }
-
 }

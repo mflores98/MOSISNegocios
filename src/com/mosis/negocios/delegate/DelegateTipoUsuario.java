@@ -19,9 +19,29 @@ public class DelegateTipoUsuario {
     public DelegateTipoUsuario() {
     }
 
-    public void insertTipoUsuario(TipoUsuario tipoUsuario) {
-
+    public void addTipoUsuario(TipoUsuario tipoUsuario) {
+        ServiceFacadeLocator.getFacadeTipoUsuario().addTipoUsuario(new TipoUsuario(null, tipoUsuario.getTipoUsuario()));
     }
+
+    public void updateTipoUsuario(int id, TipoUsuario tu) {
+        TipoUsuario tipoUsuario = new TipoUsuario(id, tu.getTipoUsuario());
+        ServiceFacadeLocator.getFacadeTipoUsuario().updateTipoUsuario(id, tipoUsuario);
+    }
+
+//    public static void main(String[] args) {
+//        DelegateTipoUsuario dtu = new DelegateTipoUsuario();
+////        dtu.addTipoUsuario(new TipoUsuario(null, "empleado comun"));
+////        TipoUsuario tipoUsuario = new TipoUsuario();
+////        tipoUsuario.setTipoUsuario("super armin mod");
+////        dtu.updateTipoUsuario(6, tipoUsuario);
+//
+////        List<TipoUsuario> tp = dtu.getListTipoUsuario();
+////        TipoUsuario tp = dtu.getTipoUsuarioId(5);
+////        System.out.println(tp.getTipoUsuario());
+//    
+////        dtu.deleteTipoUsuario(6);
+//    
+//    }
 
     /**
      * un usuario mediante su id
@@ -33,27 +53,11 @@ public class DelegateTipoUsuario {
         TipoUsuario tipoUsuarioID = ServiceFacadeLocator.getFacadeTipoUsuario().tipoUsuarioID(id);
         return tipoUsuarioID;
     }
-//        public static void main(String[] args) {
-//        DelegateTipoUsuario ftu = new DelegateTipoUsuario();
-//        TipoUsuario dato = ftu.getTipoUsuarioId(1);
-//        Gson gson = new Gson();
-//        String toJson = gson.toJson(dato);
-//        System.out.println(toJson);
-//
-//    }
-//   
 
     public List<TipoUsuario> getListTipoUsuario() {
         return ServiceFacadeLocator.getFacadeTipoUsuario().getListTipoUsuarios();
 
     }
-//    public static void main(String[] args) {
-//        DelegateTipoUsuario u=new DelegateTipoUsuario();
-//        TipoUsuario d = u.getTipoUsuarioId(1);
-//       // for (TipoUsuario d : listTipoUsuario) {
-//            System.out.println(d.getTipoUsuario());
-//        //}
-//    }
 
     public List<Object[]> tipoUsuarioMuestraPorId(int valorid) {
         List<Object[]> mostrarTipoUsuarioPorId = ServiceFacadeLocator.getFacadeTipoUsuario().mostrarTipoUsuarioPorId(valorid);
@@ -65,19 +69,14 @@ public class DelegateTipoUsuario {
         return mostrarTipoUsiarios;
     }
 
-    public void eliminarTipoUsuario(int id) {
+    public void deleteTipoUsuario(int id) {
         TipoUsuario tu = ServiceFacadeLocator.getFacadeTipoUsuario().tipoUsuarioID(id);
         if (tu != null) {
-            ServiceFacadeLocator.getFacadeTipoUsuario().elimniar(id);
+            ServiceFacadeLocator.getFacadeTipoUsuario().elimniarTipoUsuario(id);
             System.out.println("dato eliminado");
-
         } else {
             System.out.println("dato no existe");
         }
     }
 
-//    public static void main(String[] args) {
-//        DelegateTipoUsuario dtu=new DelegateTipoUsuario();
-//        dtu.eliminarTipoUsuario(13);
-//    }
 }

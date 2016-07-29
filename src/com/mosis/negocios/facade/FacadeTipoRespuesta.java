@@ -7,6 +7,7 @@ package com.mosis.negocios.facade;
 
 import com.mosis.entidades.TipoRespuesta;
 import com.mosis.entidades.Usuarios;
+import com.mosis.negocios.integracion.ServiceFacadeLocator;
 import com.mosis.persistencia.integracion.ServiceLocator;
 import java.util.List;
 
@@ -18,33 +19,34 @@ public class FacadeTipoRespuesta {
     
     FacadeUsuarios fu = new FacadeUsuarios();
     
-    public void addTipoRespuesta(TipoRespuesta tr, Usuarios u) {
+    public void addTipoRespuesta(TipoRespuesta tr) {
         ServiceLocator.getInstance().setTipo(TipoRespuesta.class);
-        
         TipoRespuesta tipoRespuesta = new TipoRespuesta();
-        
-        Usuarios usuariosID = fu.usuariosId(u.getIdUsuario());
-        
         tipoRespuesta.setTipoRespuesta(tr.getTipoRespuesta());
-        tipoRespuesta.setFkIdUsuario(usuariosID);
-        
         ServiceLocator.getInstance().save(tipoRespuesta);
-        
     }
+//    
+//    public static void main(String[] args) {
+//        //ServiceFacadeLocator.getFacadeTipoRespuesta().addTipoRespuesta(new TipoRespuesta(null, "Mi tipo"));
+////        TipoRespuesta tr = new TipoRespuesta();
+////        tr.setTipoRespuesta("tipo respuesta edit");
+////        ServiceFacadeLocator.getFacadeTipoRespuesta().updateTipoRespuestas(1, tr);
+//
+////        List<TipoRespuesta> tr = ServiceFacadeLocator.getFacadeTipoRespuesta().getListTipoRespuestas();
+////        for (TipoRespuesta tr1 : tr) {
+////            System.out.println(tr1.getTipoRespuesta());
+////        }
+//        ServiceFacadeLocator.getFacadeTipoRespuesta().deleteTipoRespuesta(1);
+//    }
     
-    public void updateTipoRespuestas(TipoRespuesta tr, Usuarios u) {
+    public void updateTipoRespuestas(int id, TipoRespuesta tr) {
         ServiceLocator.getInstance().setTipo(TipoRespuesta.class);
         
         TipoRespuesta tipoRespuesta = new TipoRespuesta();
-        
-        Usuarios usuariosID = fu.usuariosId(u.getIdUsuario());
-        
-        tipoRespuesta.setIdTipoRespuesta(tr.getIdTipoRespuesta());
+        tipoRespuesta.setIdTipoRespuesta(id);
         tipoRespuesta.setTipoRespuesta(tr.getTipoRespuesta());
-        tipoRespuesta.setFkIdUsuario(usuariosID);
         
         ServiceLocator.getInstance().saveOrUpdate(tipoRespuesta);
-        
     }
     
     public TipoRespuesta getTipoRespuestaId(int id) {
@@ -63,7 +65,6 @@ public class FacadeTipoRespuesta {
         ServiceLocator.getInstance().setTipo(TipoRespuesta.class);
         TipoRespuesta tipoRespuesta = getTipoRespuestaId(id);
         ServiceLocator.getInstance().delete(tipoRespuesta);
-        
     }
     
 }

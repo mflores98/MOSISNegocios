@@ -7,9 +7,13 @@ package com.mosis.negocios.integracion;
 
 import com.mosis.negocios.facade.FacadeCriteria;
 import com.mosis.negocios.facade.FacadeDispositivo;
+import com.mosis.negocios.facade.FacadeEmpleado;
 import com.mosis.negocios.facade.FacadeEtiquetas;
 import com.mosis.negocios.facade.FacadeGuardia;
+import com.mosis.negocios.facade.FacadePersona;
 import com.mosis.negocios.facade.FacadePreguntas;
+import com.mosis.negocios.facade.FacadeRutas;
+import com.mosis.negocios.facade.FacadeTipoEmpleado;
 import com.mosis.negocios.facade.FacadeTipoRespuesta;
 import com.mosis.negocios.facade.FacadeTipoUsuario;
 import com.mosis.negocios.facade.FacadeUsuarios;
@@ -27,6 +31,10 @@ public class ServiceFacadeLocator {
     private static FacadePreguntas facadePreguntas;
     private static FacadeTipoRespuesta facadeTipoRespuesta;
     private static FacadeGuardia facadeGuardia;
+    private static FacadeRutas facadeRutas;
+    private static FacadePersona facadePersona;
+    private static FacadeTipoEmpleado facadeTipoEmpleado;
+    private static FacadeEmpleado facadeEmpleado;
 
     private static FacadeCriteria facadeCriteria;
 
@@ -93,12 +101,48 @@ public class ServiceFacadeLocator {
         }
     }
 
+    public static FacadeRutas getFacadeRutas() {
+        if (facadeRutas == null) {
+            facadeRutas = new FacadeRutas();
+            return facadeRutas;
+        } else {
+            return facadeRutas;
+        }
+    }
+
+    public static FacadePersona getFacadePersona() {
+        if (facadePersona == null) {
+            facadePersona = new FacadePersona();
+            return facadePersona;
+        } else {
+            return facadePersona;
+        }
+    }
+
+    public static FacadeTipoEmpleado getFacadeTipoEmpleado() {
+        if (facadeTipoEmpleado == null) {
+            facadeTipoEmpleado = new FacadeTipoEmpleado();
+            return facadeTipoEmpleado;
+        } else {
+            return facadeTipoEmpleado;
+        }
+    }
+
     public static FacadeCriteria getFacadeCriterioBusquedaInstance() {
         if (facadeCriteria == null) {
             facadeCriteria = new FacadeCriteria();
             return facadeCriteria;
         } else {
             return facadeCriteria;
+        }
+    }
+
+    public static FacadeEmpleado getFacadeEmpleado() {
+        if (facadeEmpleado == null) {
+            facadeEmpleado = new FacadeEmpleado();
+            return facadeEmpleado;
+        } else {
+            return facadeEmpleado;
         }
     }
 

@@ -6,7 +6,6 @@
 package com.mosis.negocios.delegate;
 
 import com.mosis.entidades.Preguntas;
-import com.mosis.entidades.Usuarios;
 import com.mosis.negocios.integracion.ServiceFacadeLocator;
 import java.util.List;
 
@@ -21,16 +20,10 @@ public class DelegatePreguntas {
      * @param p
      * @param u
      */
-    public void addPreguntas(Preguntas p, Usuarios u) {
+    public void addPreguntas(Preguntas p) {
         Preguntas pregunta = new Preguntas();
-        Usuarios usuariosID = ServiceFacadeLocator.getFacadeUsuarios().usuariosId(u.getIdUsuario());
-        if (usuariosID != null) {
-            pregunta.setPregunta(p.getPregunta());
-            pregunta.setFkIdUsuario(usuariosID);
-            ServiceFacadeLocator.getFacadePreguntas().addPregunta(pregunta, usuariosID);
-        } else {
-            System.out.println("usuario no valido");
-        }
+        pregunta.setPregunta(p.getPregunta());
+        ServiceFacadeLocator.getFacadePreguntas().addPregunta(pregunta);
     }
 
 //    public static void main(String[] args) {
@@ -42,36 +35,18 @@ public class DelegatePreguntas {
 //        preguntas.setPregunta("Pregunta 4 ?");
 //        dp.addPreguntas(preguntas, usuariosID);
 //    }
-    public void updatePreguntas(Preguntas p, Usuarios u) {
+    public void updatePreguntas(int id, Preguntas p) {
         Preguntas pregunta = new Preguntas();
 
-        Preguntas preguntaID = ServiceFacadeLocator.getFacadePreguntas().getPreguntaId(p.getIdPregunta());
-        Usuarios usuariosID = ServiceFacadeLocator.getFacadeUsuarios().usuariosId(u.getIdUsuario());
+        Preguntas preguntaID = ServiceFacadeLocator.getFacadePreguntas().getPreguntaId(id);
         if (preguntaID != null) {
-            if (usuariosID != null) {
-                pregunta.setIdPregunta(p.getIdPregunta());
-                pregunta.setPregunta(p.getPregunta());
-                pregunta.setFkIdUsuario(usuariosID);
-                ServiceFacadeLocator.getFacadePreguntas().updatePregunta(pregunta, usuariosID);
-            } else {
-                System.out.println("usuario no valido");
-            }
+            pregunta.setIdPregunta(id);
+            pregunta.setPregunta(p.getPregunta());
+            ServiceFacadeLocator.getFacadePreguntas().updatePregunta(id, pregunta);
         } else {
-            System.out.println("pregunta no valida");
+            System.out.println("pregunta no valido");
         }
     }
-//    public static void main(String[] args) {
-//        DelegatePreguntas dp = new DelegatePreguntas();
-//        DelegateUsuarios du = new DelegateUsuarios();
-//        Preguntas preguntas = new Preguntas();
-//        Usuarios usuariosid = du.getUsuarioid(11);
-//        if (usuariosid!=null) {
-//            preguntas.setIdPregunta(1);
-//            preguntas.setPregunta("Pregunta mofic?");
-//            preguntas.setFkIdUsuario(usuariosid);
-//            dp.updatePreguntas(preguntas, usuariosid);
-//        }else System.out.println("usuario no valido");
-//    }
 
     public void deletePreguntas(int id) {
         Preguntas preguntasID = ServiceFacadeLocator.getFacadePreguntas().getPreguntaId(id);
@@ -81,10 +56,6 @@ public class DelegatePreguntas {
             System.out.println("pregunta no valida");
         }
     }
-//    public static void main(String[] args) {
-//        DelegatePreguntas dp = new DelegatePreguntas();
-//        dp.deletePreguntas(894);
-//    }
 
     public Preguntas getPreguntaId(int id) {
         return ServiceFacadeLocator.getFacadePreguntas().getPreguntaId(id);
